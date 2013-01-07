@@ -1,0 +1,68 @@
+﻿// UserDataAccess.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+
+namespace MedicalCard.Data
+{
+    public class UsersDataAccess
+    {
+        public static IQueryable<User> GetUsers()
+        {
+            MedicalCardEntities context = new MedicalCardEntities();
+            return context.Users;
+        }
+
+        public static User GetUserById(int userId)
+        {
+            MedicalCardEntities context = new MedicalCardEntities();
+            var user = context.Users.Where(p => p.UserId == userId).FirstOrDefault();
+            context.Detach(user);
+            return user;
+        }
+
+        public static void InsertUser(User user)
+        {
+            MedicalCardEntities context = new MedicalCardEntities();
+            if (user.EntityState != EntityState.Detached)
+            {
+                context.ObjectStateManager.ChangeObjectState(user, EntityState.Added);
+            }
+            else
+            {
+                context.Users.AddObject(user);
+            }
+            context.SaveChanges();
+        }
+
+        public static void UpdateUser(User user)
+        {
+            MedicalCardEntities context = new MedicalCardEntities();
+            context.Users.AddObject(user);
+            context.ObjectStateManager.ChangeObjectState(user, EntityState.Modified);
+            context.SaveChanges();
+        }
+
+        public static void DeleteUser(User user)
+        {
+            MedicalCardEntities context = new MedicalCardEntities();
+            if (user.EntityState == EntityState.Detached)
+            {
+                context.Users.Attach(user);
+            }
+            context.Users.DeleteObject(user);
+            context.SaveChanges();
+        }
+			
+		public static void DeleteUserById(int userId)
+        {
+            MedicalCardEntities context = new MedicalCardEntities();
+            var user = context.Users.Where(p => p.UserId == userId).FirstOrDefault();
+
+            context.Users.DeleteObject(user);
+            context.SaveChanges();
+        }
+    }
+}

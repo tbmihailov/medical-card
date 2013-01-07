@@ -1,0 +1,129 @@
+﻿// EditUserPresenter.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MedicalCard.View;
+using MedicalCard.Data;
+
+namespace MedicalCard.Logic
+{
+    public class EditUserPresenter
+    {
+        public User User { get; set; }
+        public IEditUserView View { get; set; }
+
+        public EditUserPresenter(IEditUserView view)
+        {
+            this.View = view;
+            this.CreateNewUser();
+        }
+
+        private void CreateNewUser()
+        {
+            throw new NotImplementedException();
+        }
+
+        public EditUserPresenter(IEditUserView view, int userId)
+        {
+            this.View = view;
+            this.Load(userId);
+        }
+
+        protected void FillUser()
+        {
+			//TO DO: Fill class from view
+            //User.SomeProperty = View.UserSomeProperty;
+			
+        }
+
+        protected void FillView()
+        {
+			//TO DO:Fill view from class
+			//View.UserSomeProperty = User.SomeProperty; 
+		}
+
+        protected bool IsValid()
+        {
+            string message = string.Empty;
+            bool isValid = IsDataValid(out message);
+            View.Message = message;
+
+            return isValid;
+        }
+
+        protected bool IsDataValid(out string message)
+        {
+            message = string.Empty;
+            bool isValid = true;
+
+			//TO DO: Update validation
+            //if (String.IsNullOrEmpty(User.SomeProperty))
+            //{
+            //    message += String.Format("Полето '{0}' е празно!\n", "");
+            //    isValid = false;
+            //}
+
+            return isValid;
+        }
+
+        public void Save()
+        {
+            this.FillUser();
+            bool isValid = IsValid();
+            if (isValid)
+            {
+                SaveModel(User);
+                FillView();
+            }
+        }
+
+        private void SaveModel(User model)
+        {
+            try
+            {
+                if (User.UserId == 0)
+                {
+                    UsersDataAccess.InsertUser(User);
+                }
+                else
+                {
+                    UsersDataAccess.UpdateUser(User);
+                }
+                View.Message = "Успешен запис!";
+            }
+            catch (Exception e)
+            {
+                var message = String.Format("Възникна грешка при съхраняване! Обадете се на администратор!/n [0] ", e.Message);
+                View.Message = message;
+            }
+
+        }
+
+        public void CreateNew()
+        {
+            var newUser = new User();
+            this.User = newUser;
+            this.FillView();
+        }
+
+        public void Load(int userId)
+        {
+            try
+            {
+                if (userId == 0)
+                {
+                    throw new ArgumentNullException("userId трябва да е различно от 0!");
+                }
+                var user = UsersDataAccess.GetUserById(userId);
+                this.User = user;
+                this.FillView();
+            }
+            catch (Exception e)
+            {
+                string message = "Грешка!:" + e.Message;
+                View.Message = message;
+            }
+        }
+    }
+}

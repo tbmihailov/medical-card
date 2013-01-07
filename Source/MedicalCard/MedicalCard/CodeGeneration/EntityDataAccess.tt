@@ -1,0 +1,84 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="T4Toolbox.tt" #>
+<#
+// <copyright file="EntityDataAccess.tt" company="TU">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+string MyClass = "User"; 
+string myClass = MyClass.ToLower()[0]+MyClass.Substring(1);
+
+string MyClasses = MyClass+"s";
+string myClasses = MyClasses.ToLower()[0]+MyClasses.Substring(1);
+
+string DataContext = "MedicalCardEntities" ;
+
+#>
+// <#=MyClass #>DataAccess.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Data;
+
+namespace MedicalCard.Data
+{
+    public class <#=MyClasses #>DataAccess
+    {
+        public static IQueryable<<#=MyClass #>> Get<#=MyClasses #>()
+        {
+            <#=DataContext #> context = new <#=DataContext #>();
+            return context.<#=MyClasses #>;
+        }
+
+        public static <#=MyClass #> Get<#=MyClass #>ById(int <#=myClass #>Id)
+        {
+            <#=DataContext #> context = new <#=DataContext #>();
+            var <#=myClass #> = context.<#=MyClasses #>.Where(p => p.<#=MyClass #>Id == <#=myClass #>Id).FirstOrDefault();
+            context.Detach(<#=myClass #>);
+            return <#=myClass #>;
+        }
+
+        public static void Insert<#=MyClass #>(<#=MyClass #> <#=myClass #>)
+        {
+            <#=DataContext #> context = new <#=DataContext #>();
+            if (<#=myClass #>.EntityState != EntityState.Detached)
+            {
+                context.ObjectStateManager.ChangeObjectState(<#=myClass #>, EntityState.Added);
+            }
+            else
+            {
+                context.<#=MyClasses #>.AddObject(<#=myClass #>);
+            }
+            context.SaveChanges();
+        }
+
+        public static void Update<#=MyClass #>(<#=MyClass #> <#=myClass #>)
+        {
+            <#=DataContext #> context = new <#=DataContext #>();
+            context.<#=MyClasses #>.AddObject(<#=myClass #>);
+            context.ObjectStateManager.ChangeObjectState(<#=myClass #>, EntityState.Modified);
+            context.SaveChanges();
+        }
+
+        public static void Delete<#=MyClass #>(<#=MyClass #> <#=myClass #>)
+        {
+            <#=DataContext #> context = new <#=DataContext #>();
+            if (<#=myClass #>.EntityState == EntityState.Detached)
+            {
+                context.<#=MyClasses #>.Attach(<#=myClass #>);
+            }
+            context.<#=MyClasses #>.DeleteObject(<#=myClass #>);
+            context.SaveChanges();
+        }
+			
+		public static void Delete<#=MyClass #>ById(int <#=myClass #>Id)
+        {
+            <#=DataContext #> context = new <#=DataContext #>();
+            var <#=myClass #> = context.<#=MyClasses #>.Where(p => p.<#=MyClass #>Id == <#=myClass #>Id).FirstOrDefault();
+
+            context.<#=MyClasses #>.DeleteObject(<#=myClass #>);
+            context.SaveChanges();
+        }
+    }
+}

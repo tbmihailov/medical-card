@@ -1,0 +1,143 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="T4Toolbox.tt" #>
+<#
+// <copyright file="EntityDataAccess.tt" company="TU">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+string MyClass = "User"; 
+string myClass = MyClass.ToLower()[0]+MyClass.Substring(1);
+
+string MyClasses = MyClass+"s";
+string myClasses = MyClasses.ToLower()[0]+MyClasses.Substring(1);
+
+#>
+// Edit<#=MyClass #>Presenter.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MedicalCard.View;
+using MedicalCard.Data;
+
+namespace MedicalCard.Logic
+{
+    public class Edit<#=MyClass #>Presenter
+    {
+        public <#=MyClass #> <#=MyClass #> { get; set; }
+        public IEdit<#=MyClass #>View View { get; set; }
+
+        public Edit<#=MyClass #>Presenter(IEdit<#=MyClass #>View view)
+        {
+            this.View = view;
+            this.CreateNew<#=MyClass #>();
+        }
+
+        private void CreateNew<#=MyClass #>()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Edit<#=MyClass #>Presenter(IEdit<#=MyClass #>View view, int <#=myClass #>Id)
+        {
+            this.View = view;
+            this.Load(<#=myClass #>Id);
+        }
+
+        protected void Fill<#=MyClass #>()
+        {
+			//TO DO: Fill class from view
+            //<#=MyClass #>.SomeProperty = View.<#=MyClass #>SomeProperty;
+			
+        }
+
+        protected void FillView()
+        {
+			//TO DO:Fill view from class
+			//View.<#=MyClass #>SomeProperty = <#=MyClass #>.SomeProperty; 
+		}
+
+        protected bool IsValid()
+        {
+            string message = string.Empty;
+            bool isValid = IsDataValid(out message);
+            View.Message = message;
+
+            return isValid;
+        }
+
+        protected bool IsDataValid(out string message)
+        {
+            message = string.Empty;
+            bool isValid = true;
+
+			//TO DO: Update validation
+            //if (String.IsNullOrEmpty(<#=MyClass #>.SomeProperty))
+            //{
+            //    message += String.Format("Полето '{0}' е празно!\n", "");
+            //    isValid = false;
+            //}
+
+            return isValid;
+        }
+
+        public void Save()
+        {
+            this.Fill<#=MyClass #>();
+            bool isValid = IsValid();
+            if (isValid)
+            {
+                SaveModel(<#=MyClass #>);
+                FillView();
+            }
+        }
+
+        private void SaveModel(<#=MyClass #> model)
+        {
+            try
+            {
+                if (<#=MyClass #>.<#=MyClass #>Id == 0)
+                {
+                    <#=MyClasses #>DataAccess.Insert<#=MyClass #>(<#=MyClass #>);
+                }
+                else
+                {
+                    <#=MyClasses #>DataAccess.Update<#=MyClass #>(<#=MyClass #>);
+                }
+                View.Message = "Успешен запис!";
+            }
+            catch (Exception e)
+            {
+                var message = String.Format("Възникна грешка при съхраняване! Обадете се на администратор!/n [0] ", e.Message);
+                View.Message = message;
+            }
+
+        }
+
+        public void CreateNew()
+        {
+            var new<#=MyClass #> = new <#=MyClass #>();
+            this.<#=MyClass #> = new<#=MyClass #>;
+            this.FillView();
+        }
+
+        public void Load(int <#=myClass #>Id)
+        {
+            try
+            {
+                if (<#=myClass #>Id == 0)
+                {
+                    throw new ArgumentNullException("<#=myClass #>Id трябва да е различно от 0!");
+                }
+                var <#=myClass #> = <#=MyClasses #>DataAccess.Get<#=MyClass #>ById(<#=myClass #>Id);
+                this.<#=MyClass #> = <#=myClass #>;
+                this.FillView();
+            }
+            catch (Exception e)
+            {
+                string message = "Грешка!:" + e.Message;
+                View.Message = message;
+            }
+        }
+    }
+}

@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A99E93D1-C59F-4765-A706-F4B5B3C8CCEC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MedicalCard</RootNamespace>
+    <AssemblyName>MedicalCard</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data\ConsultationDataAccess.cs" />
+    <Compile Include="Data\DiagnosisDataAccess.cs" />
+    <Compile Include="Data\DoctorDataAccess.cs" />
+    <Compile Include="Data\MedicalCardModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MedicalCardModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Data\PatientsDataAccess.cs" />
+    <Compile Include="Data\UsersDataAccess.cs" />
+    <Compile Include="Logic\ConsultationsPresenter.cs" />
+    <Compile Include="Logic\DoctorsPresenter.cs" />
+    <Compile Include="Logic\EditConsultationPresenter.cs" />
+    <Compile Include="Logic\DiagnosesPresenter.cs" />
+    <Compile Include="Logic\EditDiagnosisPresenter.cs" />
+    <Compile Include="Logic\EditDoctorPresenter.cs" />
+    <Compile Include="Logic\EditUserPresenter.cs" />
+    <Compile Include="Logic\Membership.cs" />
+    <Compile Include="Logic\EditPatientPresenter.cs" />
+    <Compile Include="Logic\PatientsPresenter.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Consultation.extension.cs" />
+    <Compile Include="Models\Diagnosis.extension.cs" />
+    <Compile Include="Models\UserRolesEnum.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ConsultationsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ConsultationsForm.Designer.cs">
+      <DependentUpon>ConsultationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\DoctorsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DoctorsForm.Designer.cs">
+      <DependentUpon>DoctorsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditDiagnosisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditDiagnosisForm.Designer.cs">
+      <DependentUpon>EditDiagnosisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditDoctorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditDoctorForm.Designer.cs">
+      <DependentUpon>EditDoctorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditUserForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditUserForm.Designer.cs">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IDoctorsView.cs" />
+    <Compile Include="View\IEditDiagnosisView.cs" />
+    <Compile Include="View\DiagnosesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\DiagnosesForm.Designer.cs">
+      <DependentUpon>DiagnosesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditConsultationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditConsultationForm.Designer.cs">
+      <DependentUpon>EditConsultationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditPatientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditPatientForm.Designer.cs">
+      <DependentUpon>EditPatientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\IConsultationsView.cs" />
+    <Compile Include="View\IDiagnosesView.cs" />
+    <Compile Include="View\IEditConsultationView.cs" />
+    <Compile Include="View\IEditDoctorView.cs" />
+    <Compile Include="View\IEditPatientView.cs" />
+    <Compile Include="View\IEditUserView.cs" />
+    <Compile Include="View\IPatientsView.cs" />
+    <Compile Include="View\PatientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\PatientsForm.Designer.cs">
+      <DependentUpon>PatientsForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="View\ConsultationsForm.resx">
+      <DependentUpon>ConsultationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DiagnosesForm.resx">
+      <DependentUpon>DiagnosesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\DoctorsForm.resx">
+      <DependentUpon>DoctorsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditConsultationForm.resx">
+      <DependentUpon>EditConsultationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditDiagnosisForm.resx">
+      <DependentUpon>EditDiagnosisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditDoctorForm.resx">
+      <DependentUpon>EditDoctorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditPatientForm.resx">
+      <DependentUpon>EditPatientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditUserForm.resx">
+      <DependentUpon>EditUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\PatientsForm.resx">
+      <DependentUpon>PatientsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.Config" />
+    <None Include="CodeGeneration\EntitiesFormParts.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntitiesFormParts.txt</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\EditEntityPresenter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EditEntityPresenter.txt</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\EntitiesPresenter.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntitiesPresenter.txt</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\IEntitiesView.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IEntitiesView.txt</LastGenOutput>
+    </None>
+    <None Include="CodeGeneration\EntityDataAccess.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EntityDataAccess.txt</LastGenOutput>
+    </None>
+    <EntityDeploy Include="Data\MedicalCardModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MedicalCardModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Properties\DataSources\MedicalCard.Data.Patient.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\medical-bag-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\patient-large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\doctor-icon-medium.png" />
+    <Content Include="CodeGeneration\EntitiesFormParts.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitiesFormParts.tt</DependentUpon>
+    </Content>
+    <Content Include="CodeGeneration\EditEntityPresenter.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EditEntityPresenter.tt</DependentUpon>
+    </Content>
+    <Content Include="CodeGeneration\EntityDataAccess.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDataAccess.tt</DependentUpon>
+    </Content>
+    <Content Include="CodeGeneration\EntitiesPresenter.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntitiesPresenter.tt</DependentUpon>
+    </Content>
+    <Content Include="CodeGeneration\IEntitiesView.txt">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IEntitiesView.tt</DependentUpon>
+    </Content>
+    <Content Include="Data\MedicalCard-db.sql" />
+    <None Include="Resources\Diagnosis-new-icon-medium.png" />
+    <None Include="Resources\Diagnosis-icon-medium.png" />
+    <Content Include="Resources\patient-medium.png" />
+    <None Include="Resources\Sign-Shutdown-icon-medium.png" />
+    <None Include="Resources\Stethoscope-icon-new-medium.png" />
+    <None Include="Resources\patient-medium1.png" />
+    <None Include="Resources\Stethoscope-icon-medium.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

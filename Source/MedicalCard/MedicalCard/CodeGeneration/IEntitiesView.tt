@@ -1,0 +1,31 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="txt" #>
+<#@ include file="T4Toolbox.tt" #>
+<#
+// <copyright file="EntityDataAccess.tt" company="TU">
+//  Copyright © . All Rights Reserved.
+// </copyright>
+string MyClass = "User"; 
+string myClass = MyClass.ToLower()[0]+MyClass.Substring(1);
+
+string MyClasses = "Diagnoses";//MyClass+"s";
+string myClasses = MyClasses.ToLower()[0]+MyClasses.Substring(1);
+
+#>
+// I<#=MyClasses #>View.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using MedicalCard.Data;
+
+namespace MedicalCard.View
+{
+    public interface I<#=MyClasses #>View
+    {
+        IEnumerable<<#=MyClass #>> <#=MyClasses #>{ set; }
+        string Message { set; }
+		
+		string SearchProperty { set; }
+    }
+}
